@@ -19,12 +19,8 @@ Extract to a folder and run stats file.
 5. Submit a pull request :D
 
 ## History
-
-*Changelog*
----
 v1.0
-
-...```Fixed a issue where student would be added to a class that he is already enrolled in.```
+⋅⋅⋅```Fixed a issue where student would be added to a class that he is already enrolled in.```
 
 ## Credits
 
