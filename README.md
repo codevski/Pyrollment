@@ -24,8 +24,7 @@ Extract to a folder and run stats file.
 ---
 v1.0
 
-
-```Fixed a issue where student would be added to a class that he is already enrolled in.```
+...```Fixed a issue where student would be added to a class that he is already enrolled in.```
 
 ## Credits
 
