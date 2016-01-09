@@ -1,0 +1,78 @@
+#!/usr/bin/env python
+#***********************************************************************
+#* COSC1093_1510  - Scripting Language Programming
+#* Semester 1 2015 Assignment #2
+#* Full Name        : Saso Petrovski
+#* Student Number   : S3435996
+#* Date: 20 May 2015
+#***********************************************************************
+import sys
+import os
+import enrol
+import optparse
+
+ENROLDIR_key = "ENROLDIR"
+
+if ENROLDIR_key in os.environ:
+	print "ENROLDIR Variable is set"
+elif os.path.exists("data"):
+	print "ENROLDIR Variable was not set convert to default /data/"
+	os.environ["ENROLDIR"]="data"
+else:
+	print "Nothing exists"
+	sys.exit()
+	
+ENROLDIR =os.environ["ENROLDIR"]
+e = enrol.Enrol(ENROLDIR)
+
+def main():
+	parser = optparse.OptionParser(add_help_option=False)
+	parser.add_option("-s", "--student",
+						dest="student", type="string",
+						help="List all classes from specified user")
+	parser.add_option("-h", "--help",
+                      	action="store_true", dest="help", help="-h")
+	(options, args) = parser.parse_args()
+	
+	args_parameters = {}
+	
+	student = options.student
+	mhelp = options.help
+	if(mhelp):
+		print_help_message()
+		return
+
+	if(student):
+		_student(student)
+	else:
+		stats()
+		return
+		
+def stats():
+	print 'Subjects are:'
+	var1 = e.subjects_table
+	for course_code, title in var1:
+		var2 = e.classes(course_code)
+		for class_code in var2:
+			classSize = str(e._getClassSize(class_code))
+			classTotal = str(len(e.classes(course_code)))
+		print course_code+'\t\t\t'+title+'\t\t\t'+'classes: '+classTotal+'\t'+'Students: '+classSize
+	return
+
+def _student(studentID):
+	var1 = e.check_student(studentID)
+	for class_code in var1:
+		var2 = [e.class_info(class_code)]
+		for _, subjectID, day, room, _, _ in var2:
+			subName = e.subject_name(subjectID)
+			print subjectID+'\t\t'+subName+'\t\t'+day+' @ '+room
+
+def print_help_message():
+	print """
+Options:
+  -h, --help			show this help message and exit
+  <No Options>			show all subjects inc. Number of classes and students
+  -s, --student <studentID>	Print list of all classes from specified Student
+              """
+if __name__ == "__main__":
+	main()
