@@ -1,13 +1,3 @@
-#!/usr/bin/env python
-#
-#***********************************************************************
-#* COSC1093_1510  - Scripting Language Programming
-#* Semester 1 2015 Assignment #2
-#* Full Name        : Saso Petrovski
-#* Student Number   : S3435996
-#* Date: 20 May 2015
-#***********************************************************************
-# 
 import os
 import unittest
 import tempfile
@@ -143,7 +133,8 @@ class Enrol(object):
             adic[key].append(atuple)
             return atuple
         except KeyError:
-            raise KeyError('Class Code Not Found')
+            raise KeyError('Class Code Not Found')
+
     def check_student(self, studid, subcode=None):
         """Accepts one or two arguments. First required argument is a 
         student ID (String). The second is optional argument of a subject 
