@@ -25,7 +25,7 @@ Extract to a folder and run stats file.
 
 ## Credits
 
-Saso Petrovski
+Sash Petrovski
 
 ## License
 
